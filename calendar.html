@@ -1,0 +1,4800 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Calendar</title>
+
+<style>
+
+/*--- CALENDAR - TESSISAMESS - 2020 ---*/
+/*-- Find more fun stuff at: tessisamess.insanejournal.com --*/
+
+@font-face {
+                font-family: CaviarDreams;
+                src: url('CaviarDreams.ttf');
+            }
+
+            @font-face {
+                font-family: CaviarDreams;
+                src: url('CaviarDreams_Bold.ttf');
+                font-weight: bold;
+            }
+
+            @font-face {
+                font-family: CaviarDreams;
+                src: url('CaviarDreams_Italic.ttf');
+                font-style: italic;
+            }
+
+            @font-face {
+                font-family: CaviarDreams;
+                src: url('CaviarDreams_BoldItalic.ttf');
+                font-style: italic;
+                font-weight: bold;
+            }
+            
+            body {
+                font-family: 'CaviarDreams', sans-serif;
+                }
+    
+    
+
+/* REPLACEMENTS */
+
+:root{
+	--bg-color: #000000;
+	--bg-img: url(bluebrick.gif) center fixed;
+	--overlay: rgba(255,255,255,0.9);
+
+	--borders: rgba(0,0,0,0.1);
+	--content: #fff;
+
+	--text: #222;
+	--alt-text: #fff;
+
+	--margin: 2px;
+	--padding: 5px;
+
+	--header-height: 120px;
+	--header-text: 27px;
+
+	--header-img1: url("#")center top;
+	--header-img2: url()center top;
+	--header-img3: url()center top;
+	--header-img4: url()center top;
+	--header-img5: url()center top;
+	--header-img6: url()center top;
+	--header-img7: url()center top;
+	--header-img8: url()center top;
+	--header-img9: url()center top;
+	--header-img10: url()center top;
+	--header-img11: url()center top;
+	--header-img12: url()center top;
+
+	--dayname-height: 35px;
+	--day-rows: 5;
+	--date-text: 9px;
+
+	--accent1: #ae1308;
+	--accent2: #FBE6CC;
+
+	--main-font: CaviarDreams;
+}
+
+
+/* GENERAL */
+
+::selection{background:var(--accent1);color:var(--lightest);}
+::-moz-selection{background:var(--accent1);color:var(--lightest);}
+
+*{box-sizing:border-box;}
+html{background:var(--bg-color) var(--bg-img);background-size:65px;}
+body{margin:10px;padding:0 0 3vw 0;background:var(--overlay);font-family:CaviarDreams;color:var(--text);font-size:12px;line-height:1.5;}
+
+img{max-width:100%;}
+
+a{text-decoration:none;color:var(--accent1);-webkit-transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-ms-transition:all 0.5s ease-in-out;-o-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;}
+a:hover{color:var(--accent2);}
+
+#credit{position:fixed;left:10px;bottom:170px;font-weight:bold;font-size:8px;text-transform:uppercase;letter-spacing:3px;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;color:var(--accent1);}
+
+
+/* CONTAINER */
+
+.calendar{width:calc(100vw - 6vw);max-width:1300px;display:flex;flex-wrap:wrap;text-align:center;margin:0 auto;padding:3vw 0 0 0;}
+
+
+/* MONTH HEADER */
+
+header{width:100%;margin:var(--margin);height:var(--header-height);display:flex;align-items:center;justify-content:center;background-size:cover!important;color:#f4bd30;font-size:var(--header-text);line-height:1;letter-spacing:5px;text-shadow:1px 1px 1px rgba(0,0,0,0.5);text-transform:uppercase;}
+
+.calendar:nth-of-type(1) header{background:var(--accent1) var(--header-img1);}
+.calendar:nth-of-type(2) header{background:var(--accent1) var(--header-img2);}
+.calendar:nth-of-type(3) header{background:var(--accent1) var(--header-img3);}
+.calendar:nth-of-type(4) header{background:var(--accent1) var(--header-img4);}
+.calendar:nth-of-type(5) header{background:var(--accent1) var(--header-img5);}
+.calendar:nth-of-type(6) header{background:var(--accent1) var(--header-img6);}
+.calendar:nth-of-type(7) header{background:var(--accent1) var(--header-img7);}
+.calendar:nth-of-type(8) header{background:var(--accent1) var(--header-img8);}
+.calendar:nth-of-type(9) header{background:var(--accent1) var(--header-img9);}
+.calendar:nth-of-type(10) header{background:var(--accent1) var(--header-img10);}
+.calendar:nth-of-type(11) header{background:var(--accent1) var(--header-img11);}
+.calendar:nth-of-type(12) header{background:var(--accent1) var(--header-img12);}
+
+
+/* DAY HEADERS */
+
+.dayname{background:var(--accent2);height:var(--dayname-height);display:flex;align-items:center;justify-content:center;color:var(--accent1);align-self:flex-start;text-transform:uppercase;letter-spacing:1px;}
+
+
+/* DAYS */
+
+.block{width:calc((100% / 7) - (var(--margin) * 2));border:1px solid var(--borders);margin:var(--margin);}
+
+.spacer{border:1px dashed var(--borders);opacity:0.5;}
+
+.day{background:var(--content);padding:var(--padding);height:120px;}
+
+.date{display:block;text-align:right;font-size:var(--date-text);}
+.icon{margin:0 0 -3px 0;max-height:16px;max-width:16px;}
+.day a{font-weight:bold;}
+
+/*hovertext*/
+.hovertext {
+  position: relative;
+  border-bottom: 1px dotted black;
+}
+
+.hovertext:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0;
+  width: 140px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  transition: opacity 1s ease-in-out;
+
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 110%;
+}
+
+.hovertext:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+</style>
+
+<p> <center><a href="index.html" target="_blank">
+<img src="homepage.gif" height="50px" alt="click to visit my home page">
+</a></center>
+    </p>
+    
+</head>
+ 
+<body>
+
+
+	<!--COPY & PASTE ENTIRE CALENDAR ARTICLE AS NEEDED FOR NEW MONTHS-->
+
+
+	
+	
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>June</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+			<span class="hovertext" data-hover="庚寅, receive">
+     🐅
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+			<span class="hovertext" data-hover="辛卯, open">
+     🐇
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+			<span class="hovertext" data-hover="壬辰, close">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+			<span class="hovertext" data-hover="癸巳, establish">
+			🐍
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+			<span class="hovertext" data-hover="甲午, remove">
+    🐎
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+			<span class="hovertext" data-hover="乙未, remove; horse month 戊午 🐎 starts">
+     🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>	
+					<span class="hovertext" data-hover="丙申, full">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+			<span class="hovertext" data-hover="丁酉, balance">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+			<span class="hovertext" data-hover="戊戌, stable">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+			<span class="hovertext" data-hover="己亥, initiate">
+     🐖
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+			<span class="hovertext" data-hover="庚子, destruction">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+	<span class="hovertext" data-hover="辛丑, danger">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+			<span class="hovertext" data-hover="壬寅, success">
+    🐅
+    </span>  
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+	<span class="hovertext" data-hover="癸卯, receive">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+			<span class="hovertext" data-hover="甲辰, open">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+			<span class="hovertext" data-hover="乙巳, close">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="丙午, establish">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+			<span class="hovertext" data-hover="丁未, remove">
+    🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+			<span class="hovertext" data-hover="戊申, full">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+	<span class="hovertext" data-hover="己酉, balance">
+			 🐓
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="庚戌, stable">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+			<span class="hovertext" data-hover="辛亥, initiate">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="壬子, destruction">
+     🐀
+</span> <br>
+<span class="hovertext" data-hover="Sonic Day">
+     🐾
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="癸丑, danger">
+     🐂
+</span>
+		<br><br>
+<span class="hovertext" data-hover="St. John the Baptist Day">
+     ✝️
+     </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+			<span class="hovertext" data-hover="甲寅, success">
+    🐅
+  </span>
+  <br>
+			<span class="hovertext" data-hover="International Day of the Seafarer">⚓</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+			<span class="hovertext" data-hover="乙卯, receive">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+	<span class="hovertext" data-hover="丙辰, open">
+     🐉
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="丁巳, close">
+     🐍
+     </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="戊午, establish">
+    🐎
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="己未, remove">
+    🐏
+  </span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>July</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+			 	<span class="hovertext" data-hover="庚申, full">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="辛酉, balance">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="壬戌, stable">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+			<span class="hovertext" data-hover="癸亥, initiate">
+     🐖
+  </span><br>
+<span class="hovertext" data-hover="Independence Day">
+     🇺🇲
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+			<span class="hovertext" data-hover="甲子, destruction">
+     🐀
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+			<span class="hovertext" data-hover="乙丑, danger">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+			<span class="hovertext" data-hover="丙寅, danger; sheep month 己未 🐏 starts">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+			<span class="hovertext" data-hover="丁卯, success">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+			<span class="hovertext" data-hover="戊辰, receive">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+			<span class="hovertext" data-hover="己巳, open">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+			<span class="hovertext" data-hover="庚午, close">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="辛未, establish">
+     🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="庚申, remove">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+	<span class="hovertext" data-hover="癸酉, full">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>	
+<span class="hovertext" data-hover="甲戌, balance">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="乙亥, stable">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="丙子, initiate">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="丁丑, destruction">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="戊寅, danger">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="己卯, success">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="庚辰, receive">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="辛巳, open">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+			<span class="hovertext" data-hover="壬午, close">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="癸未, establish">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+			<span class="hovertext" data-hover="甲申, remove">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="乙酉, full">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="丙戌, balance">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="丁亥, stable">
+     🐖
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b> 
+<span class="hovertext" data-hover="戊子, initiate">
+			🐀
+			</span> <br>
+			<span class="hovertext" data-hover="World Tiger Day">
+     🐯
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="己丑, destruction">
+     🐂
+</span>
+		</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="庚寅, danger">
+     🐅
+</span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>August</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="辛卯, success">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="壬辰, receive">
+     🐉
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="癸巳, open">
+			🐍
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="甲午, close">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="乙未, establish">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="丙申, remove">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+			<span class="hovertext" data-hover="丁酉, full">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="戊戌, full; monkey month 庚申 🐒 starts">
+     🐕
+  </span> <br>
+			<span class="hovertext" data-hover="International Cat Day">
+     🐱
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="己亥, balance">
+     🐖
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="庚子, stable">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="辛丑, initiate">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="壬寅, destruction">
+    🐅
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="癸卯, danger">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="甲辰, success">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="乙巳, receive">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="丙午, open">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="丁未, close">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="戊申, establish">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="己酉, remove">
+			 🐓
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="庚戌, full">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="辛亥, balance">
+     🐖
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="壬子, stable">
+     🐀
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="癸丑, initiate">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+			<span class="hovertext" data-hover="甲寅, destruction">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="乙卯, danger">
+     🐇
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="丙辰, success">
+     🐉
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="丁巳, receive">
+     🐍
+     </span>
+     		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="戊午, open">
+    🐎
+    </span>
+    	</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="己未, close">
+    🐏
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="庚申, establish">
+			 🐒
+			</span>
+					</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="辛酉, remove">
+			 🐓
+			</span>
+					</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>September</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="壬戌, full">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="癸亥, balance">
+     🐖
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="甲子, stable">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="乙丑, initiate">
+     🐂
+</span><br>
+<span class="hovertext" data-hover="Labor Day">
+     🇺🇲
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="丙寅, destruction">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="丁卯, danger">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="戊辰, success">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="己巳, success; phoenix month 辛酉 🐓 starts">
+			🐍
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="庚午, receive">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="辛未, open">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="壬申, close">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="癸酉, establish">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="甲戌, remove">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="乙亥, full">
+     🐖
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="丙子, balance">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="丁丑, stable">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="戊寅, initiate">
+     🐅
+</span><br>
+<span class="hovertext" data-hover="National Fox Day">
+     🦊
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="己卯, destruction">
+    🐇
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="庚辰, danger">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="辛巳, success">
+     🐍
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="壬午, receive">
+    🐎
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="癸未, open">
+			 🐏
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="甲申, close">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="乙酉, establish">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="丙戌, remove">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="丁亥, full">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="戊子, balance">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="己丑, stable">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+ <span class="hovertext" data-hover="庚寅, initiate">
+    🐅
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="辛卯, destruction">
+     🐇
+</span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>October</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="壬辰, danger">
+     🐉
+  </span><br>
+<span class="hovertext" data-hover="Whumptober begins">
+     📚
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="癸巳, success">
+     🐍
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="甲午, receive">
+    🐎
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="乙未, open">
+			 🐏
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="丙申, close">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="丁酉, establish">
+			 🐓
+</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="戊戌, remove">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="己亥, remove; dog month 壬戌 🐕 starts">
+     🐖
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="庚子, full">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="辛丑, balance">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="壬寅, stable">
+    🐅
+    </span>
+    		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="癸卯, initiate">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="甲辰, destruction">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="乙巳, danger">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="丙午, success">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="丁未, receive">
+    🐏
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="戊申, open">
+			 🐒
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="己酉, close">
+			 🐓
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="庚戌, establish">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="辛亥, remove">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="壬子, full">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="癸丑, balance">
+     🐂
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="甲寅, stable">
+    🐅
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="乙卯, initiate">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="丙辰, destruction">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="丁巳, danger">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="戊午, success">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="己未, receive">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="庚申, open">
+			 🐒
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="辛酉, close">
+			 🐓
+</span>
+	</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+			<span class="hovertext" data-hover="壬戌, establish">
+     🐕
+  </span><br>
+<span class="hovertext" data-hover="Halloween">🐈‍⬛
+</span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>November</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+			<span class="hovertext" data-hover="癸亥, remove">
+     🐖
+  </span><br>
+<span class="hovertext" data-hover="NaNoWriMo begins">
+     📚
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+			<span class="hovertext" data-hover="甲子, full">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="乙丑, balance">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="丙寅, stable">
+    🐅
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="丁卯, initiate">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="戊辰, destruction">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="己巳, danger">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+			<span class="hovertext" data-hover="庚午, danger; pig month 癸亥 🐖 starts">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="辛未, success">
+			 🐏
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="壬申, receive">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="癸酉, open">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+			<span class="hovertext" data-hover="甲戌, close">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="乙亥, establish">
+     🐖
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="丙子, remove">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="丁丑, full">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="戊寅, balance">
+     🐅
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="己卯, stable">
+    🐇
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="庚辰, initiate">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+			<span class="hovertext" data-hover="辛巳, destruction">
+     🐍
+</span>
+		</div>
+		
+		<div class="day block">
+			<b class="date">20</b>
+	<span class="hovertext" data-hover="壬午, danger">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+			<span class="hovertext" data-hover="癸未, success">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+			<span class="hovertext" data-hover="甲申, receive">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+			<span class="hovertext" data-hover="乙酉, open">
+			 🐓
+			</span><br>
+<span class="hovertext" data-hover="Thanksgiving">
+     🦃
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+			<span class="hovertext" data-hover="丙戌, close">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+			<span class="hovertext" data-hover="丁亥, establish">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+			<span class="hovertext" data-hover="戊子, remove">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+			<span class="hovertext" data-hover="己丑, full">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="庚寅, balance">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+			<span class="hovertext" data-hover="辛卯, stable">
+    🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+	<span class="hovertext" data-hover="壬辰, initiate">
+     🐉
+  </span>
+		</div>
+		
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>December</b> 2023 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+			<span class="hovertext" data-hover="癸巳, destruction">
+			🐍
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+			<span class="hovertext" data-hover="甲午, danger">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+			<span class="hovertext" data-hover="乙未, success">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="丙申, receive">
+			 🐒
+			</span>
+<br>
+<span class="hovertext" data-hover="International Cheetah Day">
+     🐆
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="丁酉, open">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+			<span class="hovertext" data-hover="戊戌, close">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+	<span class="hovertext" data-hover="己亥, close;	rat month 甲子 🐀 starts">
+	    🐖
+	    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="庚子, establish">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="辛丑, remove">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="壬寅, full">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="癸卯, balance">
+			 🐇
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+			<span class="hovertext" data-hover="甲辰, stable">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="乙巳, initiate">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+			<span class="hovertext" data-hover="丙午, destruction">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+			<span class="hovertext" data-hover="丁未, danger">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+	<span class="hovertext" data-hover="戊申, success">
+			 🐒
+			</span>
+				</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="己酉, receive">
+			 🐓
+			</span>
+				</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+	<span class="hovertext" data-hover="庚戌, open">
+     🐕
+  </span>
+  	</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="辛亥, close">
+	    🐖
+	    </span>
+	    		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="壬子, establish">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+	<span class="hovertext" data-hover="癸丑, remove">
+     🐂
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="甲寅, full">
+    🐅
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="乙卯, balance">
+			 🐇
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">24</b> 
+			<span class="hovertext" data-hover="丙辰, stable">
+     🐉
+  </span>
+  <br><br><span class="hovertext" data-hover="Christmas Eve">
+     ✝️
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b> 
+<span class="hovertext" data-hover="丁巳, initiate">
+     🐍
+</span>
+			<br><br><span class="hovertext" data-hover="Christmas Day">
+     ✝️
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+			<span class="hovertext" data-hover="戊午, destruction">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+			<span class="hovertext" data-hover="己未, danger">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="庚申, success">
+			 🐒
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="辛酉, receive">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="壬戌, open">
+     🐕
+  </span>
+  		</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="癸亥, close">
+	    🐖
+	    </span>
+	  <br>  <span class="hovertext" data-hover="New Year's Eve">
+	    🍾
+	    </span>
+	    		</div>
+
+	</article>
+	
+		<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>January</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		
+
+		<div class="day block">
+			<b class="date">1</b>
+			<span class="hovertext" data-hover="甲子, establish">
+			🐀
+			</span> <br>
+			<span class="hovertext" data-hover="New Year's Day">
+			🍸
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="乙丑, remove">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="丙寅, full">
+    🐅
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="丁卯, balance">
+			 🐇
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="戊辰, stable">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="己巳, stable; ox month 癸丑 🐂 starts">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="庚午, initiate">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+			<span class="hovertext" data-hover="辛未, destruction">
+			 🐏
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="壬申, danger">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="癸酉, success">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+						<span class="hovertext" data-hover="甲戌, receive">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="乙亥, open">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="丙子, close">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="丁丑, establish">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="戊寅, remove">
+     🐅
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+			<span class="hovertext" data-hover="己卯, full">
+    🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="庚辰, balance">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="辛巳, stable">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="壬午, initiate">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="癸未, destruction">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="甲申, danger">
+			 🐒
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="乙酉, success">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="丙戌, receive">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="丁亥, open">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="戊子, close">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="己丑, establish">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="庚寅, remove">
+     🐅
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="辛卯, full">
+    🐇
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="壬辰, balance">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="癸巳, stable">
+     🐍
+</span>
+		</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="甲午, initiate">
+    🐎
+  </span>
+  		</div>
+
+	</article>
+	
+		<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>February</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b><span class="hovertext" data-hover="乙未, destruction">
+			 🐏
+			</span> <br>
+<span class="hovertext" data-hover="February ficlet challenge begins">
+			 📚
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="丙申, danger">
+			 🐒
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="丁酉, success">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="戊戌, success; tiger month 丙寅 🐅 starts">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="己亥, receive">
+	    🐖
+	    </span>
+	    		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="庚子, open">
+			🐀
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="辛丑, close">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="壬寅, establish">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="癸卯, remove">
+			 🐇
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+			<span class="hovertext" data-hover="甲辰, full">
+     🐉
+  </span> <br>
+  <span class="hovertext" data-hover="Chinese New Year, year of the Dragon 甲辰🐉">
+  <p style='color:red;'> 福</p> 
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="乙巳, balance">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="丙午, stable">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="丁未, initiate">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+	<span class="hovertext" data-hover="戊申, destruction">
+			 🐒
+			</span>
+			<br><br><span class="hovertext" data-hover="St. Valentine's Day">
+     ✝️
+  </span>
+				</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="己酉, danger">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="庚戌, success">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="辛亥, receive">
+	    🐖
+	    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="壬子, open">
+			🐀
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="癸丑, close">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="甲寅, establish">
+    🐅
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="乙卯, remove">
+			 🐇
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="丙辰, full">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="丁巳, balance">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="戊午, stable">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="己未, initiate">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="庚申, destruction">
+			 🐒
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+			<span class="hovertext" data-hover="辛酉, danger">
+			 🐓
+			</span> <br>
+			<span class="hovertext" data-hover="Pokémon Day">
+			 🐾
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+	<span class="hovertext" data-hover="壬戌, success">
+     🐕
+  </span>
+  	</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="癸亥, receive">
+	    🐖
+	    </span>
+	    		</div>
+			
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>March</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+  <div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="甲子, open">
+			🐀
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="乙丑, close">
+     🐂
+  </span>
+  </div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="丙寅, establish">
+     🐅
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+			<span class="hovertext" data-hover="丁卯, remove">
+     🐇
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+			<span class="hovertext" data-hover="戊辰, full">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="己巳, full; rabbit month 丁卯 🐇 starts">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>			
+<span class="hovertext" data-hover="庚午, balance">
+    🐎
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="辛未, stable">
+     🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="壬申, initiate">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+			<span class="hovertext" data-hover="癸酉, destruction">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="甲戌, danger">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="乙亥, success">
+     🐖
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="丙子, receive">
+			🐀
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+			<span class="hovertext" data-hover="丁丑, open">
+     🐂
+  </span>
+<br>
+<span class="hovertext" data-hover="Pi Day">
+     π
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="戊寅, close">
+     🐅
+  </span>
+	</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="己卯, establish">
+     🐇
+  </span>
+			</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="庚辰, remove">
+     🐉
+  </span>
+ <br><br>
+<span class="hovertext" data-hover="St. Patrick's Day">
+     ✝️
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="辛巳, full">
+     🐍
+  </span>
+	</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="壬午, balance">
+    🐎
+  </span>
+	</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="癸未, stable">
+    🐏
+  </span>
+  <br>
+<span class="hovertext" data-hover="World Storytelling Day">
+     📖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="甲申, initiate">
+			 🐒
+			</span>		
+</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="乙酉, destruction">
+			 🐓
+			</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="丙戌, danger">
+     🐕
+  </span>		
+	</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="丁亥, success">
+     🐖
+  </span>
+    <br><br>
+<span class="hovertext" data-hover="Palm Sunday">
+     ✝️
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="戊子, receive">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="己丑, open">
+     🐂
+  </span>
+	</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+			<span class="hovertext" data-hover="庚寅, close">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="辛卯, establish">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="壬辰, remove">
+     🐉
+  </span>
+  <br><br>
+<span class="hovertext" data-hover="Good Friday">
+     ✝️
+  </span>
+	</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="癸巳, full">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">31</b>
+			<span class="hovertext" data-hover="甲午, balance">
+    🐎
+			</span>
+  <br><br>
+<span class="hovertext" data-hover="Easter">
+     ✝️
+  </span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>April</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="乙未, stable">
+     🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="丙申, initiate">
+			 🐒
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+			<span class="hovertext" data-hover="丁酉, destruction">
+			 🐓
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+		<span class="hovertext" data-hover="戊戌, destruction; dragon month 戊辰 🐉 starts">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+			<span class="hovertext" data-hover="己亥, danger">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+		<span class="hovertext" data-hover="庚子, success">
+     🐀
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+			<span class="hovertext" data-hover="辛丑, receive">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+			<span class="hovertext" data-hover="壬寅, open">
+    🐅
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+			<span class="hovertext" data-hover="癸卯, close">
+     🐇
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+			<span class="hovertext" data-hover="甲辰, establish">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="乙巳, remove">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+			<span class="hovertext" data-hover="丙午, full">
+    🐎
+  </span>		
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b	>
+<span class="hovertext" data-hover="丁未, balance">
+    🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="戊申, stable">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="己酉, initiate">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="庚戌, destruction">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>	
+<span class="hovertext" data-hover="辛亥, danger">
+     🐖
+ </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+			<span class="hovertext" data-hover="壬子, success">
+     🐀
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>	
+			<span class="hovertext" data-hover="癸丑, receive">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+			<span class="hovertext" data-hover="甲寅, open">
+    🐅
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+			<span class="hovertext" data-hover="乙卯, close">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b> 
+			<span class="hovertext" data-hover="丙辰, establish">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="丁巳, remove">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="戊午, full">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+			<span class="hovertext" data-hover="己未, balance">
+    🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+		<span class="hovertext" data-hover="庚申, stable">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+		<span class="hovertext" data-hover="辛酉, initiate">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+			<span class="hovertext" data-hover="壬戌, destruction">
+     🐕
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="癸亥, danger">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+			<span class="hovertext" data-hover="甲子, danger">
+			🐀
+			</span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>May</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="乙丑, receive">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+			<span class="hovertext" data-hover="丙寅, open">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="丁卯, close">
+     🐇
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="戊辰, establish">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="己巳, establish; snake month 己巳 🐍 starts">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="庚午, remove">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="辛未, full">
+     🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="壬申, balance">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="癸酉, stable">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="甲戌, initiate">
+     🐕
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="乙亥, destruction">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="丙子, danger">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="丁丑, success">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="戊寅, receive">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="己卯, open">
+     🐇
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="庚辰, close">
+     🐉
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="辛巳, establish">
+     🐍
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="壬午, remove">
+    🐎
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="癸未, full">
+    🐏
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="甲申, balance">
+			 🐒
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="乙酉, stable">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="丙戌, initiate">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="丁亥, destruction">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="戊子, danger">
+			🐀
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="己丑, success">
+     🐂
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="庚寅, receive">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="辛卯, open">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="壬辰, close">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="癸巳, establish">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="甲午, remove">
+    🐎
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="乙未, full">
+     🐏
+  </span>
+</div>
+
+	</article>
+
+<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>June</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="丙申, balance">
+			 🐒
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="丁酉, stable">
+			 🐓
+</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="戊戌, initiate">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="己亥, destruction">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="庚子, destruction; horse month 庚午 🐎 starts">
+			🐀
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="辛丑, danger">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>	
+<span class="hovertext" data-hover="壬寅, success">
+    🐅
+    </span>
+    		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="癸卯, receive">
+     🐇
+</span>
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="甲辰, open">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="乙巳, close">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="丙午, establish">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="丁未, remove">
+    🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="戊申, full">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="己酉, balance">
+			 🐓
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="庚戌, stable">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="辛亥, initiate">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="壬子, destruction">
+     🐀
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="癸丑, danger">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="甲寅, success">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="乙卯, receive">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="丙辰, open">
+     🐉
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="丁巳, close">
+     🐍
+     </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="戊午, establish">
+    🐎
+    </span>
+ <br>
+<span class="hovertext" data-hover="Sonic Day">
+     🐾
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="己未, remove">
+    🐏
+  </span>
+		<br><br>
+<span class="hovertext" data-hover="St. John the Baptist Day">
+     ✝️
+     </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="庚申, full">
+			 🐒
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="辛酉, balance">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="壬戌, stable">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="癸亥, initiate">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="甲子, destruction">
+     🐀
+     </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="乙丑, danger">
+     🐂
+</span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>July</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="丙寅, success">
+ 🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="丁卯, receive">
+     🐇
+  </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="戊辰, open">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+			<span class="hovertext" data-hover="己巳, close">
+     🐍
+  </span>
+			<br>
+<span class="hovertext" data-hover="Independence Day">
+     🇺🇲
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="庚午, establish">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="辛未, establish; sheep month 辛未 🐏 starts">
+		       🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="庚申, remove">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="癸酉, full">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="甲戌, balance">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="乙亥, stable">
+     🐖
+ </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="丙子, initiate">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="丁丑, destruction">
+     🐂
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="戊寅, danger">
+     🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="己卯, success">
+     🐇
+ </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>	
+<span class="hovertext" data-hover="庚辰, receive">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="辛巳, open">
+     🐍
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="壬午, close">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="癸未, establish">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="甲申, remove">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="乙酉, full">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="丙戌, balance">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="丁亥, stable">
+     🐖
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="戊子, initiate">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="己丑, destruction">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="庚寅, danger">
+     🐅
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="辛卯, success">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="壬辰, receive">
+     🐉
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="癸巳, open">
+			🐍
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="甲午, close">
+    🐎
+  </span>
+ <br>
+			<span class="hovertext" data-hover="World Tiger Day">
+     🐯
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="乙未, establish">
+    🐏
+</span>
+		</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="丙申, remove">
+			 🐒
+			</span>
+		</div>
+
+	</article>
+	
+		<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>August</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="丁酉, full">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="戊戌, balance">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="己亥, stable">
+     🐖
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="庚子, initiate">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="辛丑, destruction">
+     🐂
+</span>
+</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="壬寅, danger">
+     🐅
+</span>
+</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="癸卯, danger; monkey month 壬申 🐒 starts">
+     🐇
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="甲辰, success">
+     🐉
+  </span>
+<br>
+			<span class="hovertext" data-hover="International Cat Day">
+     🐱
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="乙巳, receive">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="丙午, open">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="丁未, close">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="戊申, establish">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="己酉, remove">
+			 🐓
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="庚戌, full">
+     🐕
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="辛亥, balance">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="壬子, stable">
+     🐀
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="癸丑, initiate">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="甲寅, destruction">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="乙卯, danger">
+     🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="丙辰, success">
+     🐉
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="丁巳, receive">
+     🐍
+     </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="戊午, open">
+    🐎
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="己未, close">
+    🐏
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="庚申, establish">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="辛酉, remove">
+			 🐓
+			</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="壬戌, full">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="癸亥, balance">
+     🐖
+  </span>
+     		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="甲子, stable">
+			🐀
+			</span>
+    	</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="乙丑, initiate">
+     🐂
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="丙寅, destruction">
+     🐅
+  </span>
+					</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="丁卯, danger">
+     🐇
+</span>
+					</div>
+
+	</article>
+	
+		<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>September</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="戊辰, success">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="己巳, receive">
+     🐍
+     </span>
+<br>
+<span class="hovertext" data-hover="Labor Day">
+     🇺🇲
+  </span>
+   		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="庚午, open">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="辛未, close">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="壬申, establish">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="癸酉, remove">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="甲戌, remove; phoenix month 癸酉 🐓 starts">
+     🐕
+  </span>
+		</div>
+
+<div class="day block">
+			<b class="date">8</b>	
+<span class="hovertext" data-hover="乙亥, full">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="丙子, balance">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+			<span class="hovertext" data-hover="丁丑, stable">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="戊寅, initiate">
+     🐅
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="己卯, destruction">
+    🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="庚辰, danger">
+     🐉
+  </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="辛巳, success">
+     🐍
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="壬午, receive">
+    🐎
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="癸未, open">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="甲申, close">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="乙酉, establish">
+			 🐓
+			</span>
+<br>
+<span class="hovertext" data-hover="National Fox Day">
+     🦊
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="丙戌, remove">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="丁亥, full">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="戊子, balance">
+			🐀
+			</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="己丑, stable">
+     🐂
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="庚寅, initiate">
+    🐅
+  </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="辛卯, destruction">
+     🐇
+</span>
+</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="壬辰, danger">
+     🐉
+  </span>
+		</div>
+		
+<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="癸巳, success">
+     🐍
+  </span>
+		</div>
+
+	<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="甲午, receive">
+    🐎
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="乙未, open">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="丙申, close">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="丁酉, establish">
+			 🐓
+</span>
+  		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>October</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="戊戌, remove">
+     🐕
+</span>
+<br>
+<span class="hovertext" data-hover="Whumptober begins">
+     📚
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="己亥, full">
+     🐖
+</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="庚子, balance">
+			🐀
+			</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="辛丑, stable">
+     🐂
+  </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="壬寅, initiate">
+    🐅
+    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="癸卯, destruction">
+     🐇
+</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="甲辰, danger">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="乙巳, danger; dog month 甲戌 🐕 starts">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="丙午, success">
+    🐎
+</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="丁未, receive">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="戊申, open">
+			 🐒
+			</span>
+    		</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="己酉, close">
+			 🐓
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="庚戌, establish">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="辛亥, remove">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="壬子, full">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="癸丑, balance">
+     🐂
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="甲寅, stable">
+    🐅
+    </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="乙卯, initiate">
+     🐇
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="丙辰, destruction">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="丁巳, danger">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="戊午, success">
+    🐎
+</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="己未, receive">
+    🐏
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="庚申, open">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="辛酉, close">
+			 🐓
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="壬戌, establish">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="癸亥, remove">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="甲子, full">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="乙丑, balance">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="丙寅, stable">
+    🐅
+    </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="丁卯, initiate">
+     🐇
+</span>
+	</div>
+		
+		 <div class="day block">
+			<b class="date">31</b>
+	<span class="hovertext" data-hover="戊辰, destruction">
+     🐉
+  </span>
+  <br>
+<span class="hovertext" data-hover="Halloween">🐈‍⬛
+</span>
+		</div>
+
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>November</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		<div class="spacer block"></div>
+		
+		<div class="day block">
+			<b class="date">1</b>
+			<span class="hovertext" data-hover="己巳, danger">
+     🐍
+</span>
+			<br>
+<span class="hovertext" data-hover="NaNoWriMo begins">
+     📚
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+			<span class="hovertext" data-hover="庚午, success">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="辛未, receive">
+			 🐏
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="壬申, open">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="癸酉, close">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="甲戌, establish">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="乙亥, establish; pig month 乙亥 🐖 starts">
+     🐖
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="丙子, remove">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+<span class="hovertext" data-hover="丁丑, full">
+     🐂
+</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="戊寅, balance">
+     🐅
+</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="己卯, stable">
+    🐇
+  </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+<span class="hovertext" data-hover="庚辰, initiate">
+     🐉
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="辛巳, destruction">
+     🐍
+</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="壬午, danger">
+    🐎
+  </span>
+					</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+<span class="hovertext" data-hover="癸未, success">
+			 🐏
+			</span>
+</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="甲申, receive">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="乙酉, open">
+			 🐓
+			</span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+<span class="hovertext" data-hover="丙戌, close">
+     🐕
+  </span>
+  		</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="丁亥, establish">
+     🐖
+  </span>
+		</div>
+		
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="戊子, remove">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="己丑, full">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="庚寅, balance">
+    🐅
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="辛卯, stable">
+    🐇
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">24</b>
+<span class="hovertext" data-hover="壬辰, initiate">
+     🐉
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+<span class="hovertext" data-hover="癸巳, destruction">
+			🐍
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="甲午, danger">
+    🐎
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="乙未, success">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="丙申, receive">
+			 🐒
+			</span>
+  <br>
+<span class="hovertext" data-hover="Thanksgiving">
+     🦃
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="丁酉, open">
+			 🐓
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="戊戌, close">
+     🐕
+  </span>
+		</div>
+		
+	</article>
+	
+	<article class="calendar">
+
+		<!-- MONTH HEADER -->
+		<header><b>December</b> 2024 福</header>
+
+		<!-- DAY HEADERS -->
+		<b class="dayname block" style="font-size:1vw">Sunday</b>
+		<b class="dayname block" style="font-size:1vw">Monday</b>
+		<b class="dayname block" style="font-size:1vw">Tuesday</b>
+		<b class="dayname block" style="font-size:1vw">Wednesday</b>
+		<b class="dayname block" style="font-size:1vw">Thursday</b>
+		<b class="dayname block" style="font-size:1vw">Friday</b>
+		<b class="dayname block" style="font-size:1vw">Saturday</b>
+
+		<!-- DAYS -->
+
+		<div class="day block">
+			<b class="date">1</b>
+<span class="hovertext" data-hover="己亥, establish">
+🐖
+	</span>
+	</div>
+
+		<div class="day block">
+			<b class="date">2</b>
+<span class="hovertext" data-hover="庚子, remove">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">3</b>
+<span class="hovertext" data-hover="辛丑, full">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">4</b>
+<span class="hovertext" data-hover="壬寅, balance">
+    🐅
+  </span>
+<br>
+<span class="hovertext" data-hover="International Cheetah Day">
+     🐆
+  </span>
+</div>
+
+		<div class="day block">
+			<b class="date">5</b>
+<span class="hovertext" data-hover="癸卯, stable">
+			 🐇
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">6</b>
+<span class="hovertext" data-hover="甲辰, stable;	rat month 丙子 🐀 starts">
+     🐉
+ </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">7</b>
+<span class="hovertext" data-hover="乙巳, initiate">
+     🐍
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">8</b>
+<span class="hovertext" data-hover="丙午, destruction">
+    🐎
+</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">9</b>
+		<span class="hovertext" data-hover="丁未, danger">
+    🐏
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">10</b>
+<span class="hovertext" data-hover="戊申, success">
+			 🐒
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">11</b>
+<span class="hovertext" data-hover="己酉, receive">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">12</b>
+			<span class="hovertext" data-hover="庚戌, open">
+     🐕
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">13</b>
+<span class="hovertext" data-hover="辛亥, close">
+	    🐖
+	    </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">14</b>
+<span class="hovertext" data-hover="壬子, establish">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">15</b>
+	<span class="hovertext" data-hover="癸丑, remove">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">16</b>
+<span class="hovertext" data-hover="甲寅, full">
+    🐅
+  </span>
+				</div>
+
+		<div class="day block">
+			<b class="date">17</b>
+<span class="hovertext" data-hover="乙卯, balance">
+			 🐇
+			</span>
+				</div>
+
+		<div class="day block">
+			<b class="date">18</b>
+	<span class="hovertext" data-hover="丙辰, stable">
+     🐉
+  </span>
+  	</div>
+
+		<div class="day block">
+			<b class="date">19</b>
+<span class="hovertext" data-hover="丁巳, initiate">
+     🐍
+</span>
+	    		</div>
+
+		<div class="day block">
+			<b class="date">20</b>
+<span class="hovertext" data-hover="戊午, destruction">
+    🐎
+</span>
+  				</div>
+
+		<div class="day block">
+			<b class="date">21</b>
+<span class="hovertext" data-hover="己未, danger">
+    🐏
+    </span>
+	</div>
+
+		<div class="day block">
+			<b class="date">22</b>
+<span class="hovertext" data-hover="庚申, success">
+			 🐒
+			</span>
+ 		
+ 		</div>
+
+		<div class="day block">
+			<b class="date">23</b>
+<span class="hovertext" data-hover="辛酉, receive">
+			 🐓
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">24</b> 
+			<span class="hovertext" data-hover="壬戌, open">
+     🐕
+  </span>
+  <br><br><span class="hovertext" data-hover="Christmas Eve">
+     ✝️
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">25</b>
+			<span class="hovertext" data-hover="癸亥, close">
+	    🐖
+	    </span>
+			<br><br><span class="hovertext" data-hover="Christmas Day">
+     ✝️
+  </span>
+		</div>
+
+		<div class="day block">
+			<b class="date">26</b>
+<span class="hovertext" data-hover="甲子, establish">
+			🐀
+			</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">27</b>
+<span class="hovertext" data-hover="乙丑, remove">
+     🐂
+</span>
+		</div>
+
+		<div class="day block">
+			<b class="date">28</b>
+<span class="hovertext" data-hover="丙寅, full">
+    🐅
+  </span>
+    				</div>
+
+		<div class="day block">
+			<b class="date">29</b>
+<span class="hovertext" data-hover="丁卯, balance">
+			 🐇
+			</span>
+					</div>
+
+		<div class="day block">
+			<b class="date">30</b>
+<span class="hovertext" data-hover="戊辰, stable">
+     🐉
+  </span>
+</div>
+
+		 <div class="day block">
+			<b class="date">31</b>
+<span class="hovertext" data-hover="己巳, initiate">
+     🐍
+</span>
+	  <br>  <span class="hovertext" data-hover="New Year's Eve">
+	    🍾
+	    </span>
+	    		</div>
+
+	</article>
+	<!-- CREDIT - DO NOT REMOVE  -->
+	<a href="http://tessisamess.insanejournal.com/" id="credit">TESSISAMESS</a>
+
+</body>
+
+</html>
