@@ -30,7 +30,7 @@
             body {
                 font-family: 'Papyrus', fantasy;
                 margin: 0;
-                background-color: #d0f0c0;
+                background-color: #000;
                 /* you can delete the line below if you'd prefer to not use an image */
                 background-size: 68px;
                 color: #880000;
@@ -263,4 +263,5 @@
 
 /* I found this open source layout on
 https://sadgrl.online/projects/layout-builder/ and modified it. Imma put this credit here even though it's not required :) so other people can have fun making personal websites too */
+
 
