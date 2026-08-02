@@ -247,19 +247,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-            /* Three image containers (use 25% for four, and 50% for two, etc) */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
-
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
 
 /* I found this open source layout on
 https://sadgrl.online/projects/layout-builder/ and modified it. Imma put this credit here even though it's not required :) so other people can have fun making personal websites too */
