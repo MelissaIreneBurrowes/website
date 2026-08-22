@@ -28,7 +28,6 @@
 
 
             body {
-                font-family: 'Papyrus', fantasy;
                 margin: 0;
                 background-color: #880000;
                 /* you can delete the line below if you'd prefer to not use an image */
@@ -36,6 +35,10 @@
                 color: #880000;
                 background-image: var(--body-bg-image);
             }
+
+h1, h2, h3, h4, h5, h6 {
+                font-family: 'Papyrus', fantasy;
+}
 
             * {
                 box-sizing: border-box;
