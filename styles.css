@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
             }
 /* when a link is hovered over */
             #container a:hover {
-                color: #ff3300;
+                color: #bf0101;
                 text-decoration: underline;
             }
 
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 
             /* navigation link when a link is hovered over */
             #navbar li a:hover {
-                color: #ff6600;
+                color: #bf0101;
                 text-decoration: underline;
             }
 
