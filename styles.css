@@ -5,9 +5,6 @@
             :root {
                 --header-image: url('#');
                 --body-bg-image: url('oriental.jpg');
-
-                /* colors */
-                --content: #43256E;
             }
 
             /* if you have the URL of a font, you can set it below */
