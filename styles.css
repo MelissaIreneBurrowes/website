@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 
             #header {
                 width: 0px;
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
                 /* header color here! */
                 height: 0px;
                 /* this is only for a background image! */
@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
             /* navigation section!! */
             #navbar {
                 height: 40px;
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
                 /* navbar color */
                 width: 100%;
             }
@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
     if you want to style them separately,
     create styles for #leftSidebar and #rightSidebar */
             aside {
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
                 width: 200px;
                 padding: 20px;
                 font-size: smaller;
@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
             /* this is the color of the main content area,
     between the sidebars! */
             main {
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
                 flex: 1;
                 padding: 20px;
                 order: 2;
@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5, h6 {
             }
 
             footer {
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
                 /* background color for footer */
                 width: 100%;
                 height: 40px;
@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 
             /* this is just a cool box, it's the darker colored one */
             .box {
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
                 border: 1px solid #880000;
                 padding: 10px;
             }
@@ -201,7 +201,7 @@ h1, h2, h3, h4, h5, h6 {
                 height: 50px;
                 padding: 10px;
                 font-size: smaller;
-                background-color: #d4dcb9;
+                background-color: #ffcba4;
             }
 
 
